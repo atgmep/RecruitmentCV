@@ -25,9 +25,9 @@ public interface Fix {
     String MAP_API = "/api";
 
     /* Role */
-    String ROL_ADM = "ROLE_ADM";
-    String ROL_CAN = "ROLE_CAN";
-    String ROL_DEP = "ROLE_DEP";
+    String ROL_ADM = "ADMIN";
+    String ROL_CAN = "CANDIDATE";
+    String ROL_DEP = "DEPARTMENT";
 
 
 }
