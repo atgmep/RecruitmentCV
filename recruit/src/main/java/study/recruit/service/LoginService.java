@@ -19,14 +19,6 @@ public class LoginService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-    public TblUser findByUsername(String username) {
-        Optional<TblUser> optional = userRepository.findByUsername(username);
-        if (!optional.isPresent()) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        return optional.get();
-    }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<TblUser> optional = userRepository.findByUsername(username);

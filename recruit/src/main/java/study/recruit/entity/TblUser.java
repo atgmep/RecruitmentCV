@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "tbl", catalog = "recruitdb", schema = "recruitdb")
+@Table(name = "tbl_user", catalog = "recruitdb", schema = "recruitdb")
 @XmlRootElement
 public class TblUser  implements UserDetails {
 
@@ -27,6 +27,13 @@ public class TblUser  implements UserDetails {
     @ManyToOne
     @JoinColumn(name = "tbl_role_id")
     private TblRole role;
+    @Column(name = "status")
+    private Integer status;
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private TblDepartment department;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
+    private TblCandidate candidate;
 
     public Integer getId() {
         return id;
@@ -85,5 +92,29 @@ public class TblUser  implements UserDetails {
 
     public void setRole(TblRole role) {
         this.role = role;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public TblDepartment getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(TblDepartment department) {
+        this.department = department;
+    }
+
+    public TblCandidate getCandidate() {
+        return candidate;
+    }
+
+    public void setCandidate(TblCandidate candidate) {
+        this.candidate = candidate;
     }
 }
