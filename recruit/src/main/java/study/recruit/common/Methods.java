@@ -65,42 +65,6 @@ public final class Methods {
     }
 
 
-    public String handleImage(MultipartFile image) {
-        if (image != null) {
-            String fileName = image.getOriginalFilename();
-//            Files.createDirectories(rootLocation);
-            try {
-                Files.copy(image.getInputStream(), Fix.IMG_DIR_PATH.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
-                return fileName;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
-
-    public String bytesToBase64(byte[] bytes) {
-        if(bytes == null){
-            return null;
-        }
-        StringBuilder sb = new StringBuilder();
-        sb.append("data:image/png;base64,");
-        sb.append(StringUtils.newStringUtf8(Base64.encodeBase64(bytes, false)));
-        return sb.toString();
-    }
-
-    public byte[] multipartToBytes(MultipartFile input){
-        if (input != null) {
-            try {
-                return input.getBytes();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
-
-
 
 
 }

@@ -1,12 +1,16 @@
 package study.recruit.service;
 
+import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
+import study.recruit.common.Methods;
 import study.recruit.entity.TblCV;
 import study.recruit.model.Response;
 import study.recruit.model.cv.MdlCV;
 import study.recruit.model.cv.MdlCVBuilder;
 import study.recruit.repository.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,7 +46,20 @@ public class CVService {
         return mdlCV;
     }
 
-
+    public String getCvListCan(Gson gson) {
+        Methods methods = new Methods();
+        List<TblCV> tblCVList = cvRepository.findAllByCandidate(methods.getUser().getCandidate());
+        if (tblCVList.isEmpty()) {
+            return "empty";
+        } else {
+            MdlCVBuilder mdlCVBuilder = new MdlCVBuilder();
+            String result = gson.toJson(mdlCVBuilder.buildListEntry(tblCVList.get(0)));
+            for (int i = 1; i < tblCVList.size(); i++) {
+                result += ("|" + gson.toJson(mdlCVBuilder.buildListEntry(tblCVList.get(i))));
+            }
+            return result;
+        }
+    }
 
 
 }

@@ -20,6 +20,9 @@ public class CvController extends AbstractController {
         return gson.toJson(cvService.getCvDetailCan(cvId));
     }
 
-
+    @GetMapping("/api/cv/list")
+    public String getCvList() {
+        return cvService.getCvListCan(gson);
+    }
 
 }

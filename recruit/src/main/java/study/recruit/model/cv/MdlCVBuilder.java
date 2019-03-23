@@ -62,4 +62,19 @@ public class MdlCVBuilder {
         }
         return mdlCV;
     }
+
+    public MdlCV buildListEntry(TblCV tblCV) {
+        MdlCV mdlCV = new MdlCV();
+        mdlCV.id = tblCV.getId();
+        mdlCV.name = tblCV.getName();
+        mdlCV.objective = tblCV.getObjective();
+        mdlCV.additionalInfo = tblCV.getAdditionalInfo();
+        mdlCV.pdfUrl = tblCV.getPdfUrl();
+        mdlCV.candidateId = tblCV.getCandidate().getId();
+        mdlCV.candidateUsername = tblCV.getCandidate().getUser().getUsername();
+        return mdlCV;
+
+    }
+
+
 }
