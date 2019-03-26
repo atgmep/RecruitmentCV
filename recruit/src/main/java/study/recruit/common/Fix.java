@@ -8,7 +8,7 @@ public interface Fix {
 
     String DEF_CURRENCY = "USD";
     double DEF_TAX_RATE = 0.1D;
-    String URL = "http://localhost:8800/";
+    String URL = "http://localhost:8080/";
     Path IMG_DIR_PATH = Paths.get("src/main/resources/static/img/").toAbsolutePath().normalize();
 
 
