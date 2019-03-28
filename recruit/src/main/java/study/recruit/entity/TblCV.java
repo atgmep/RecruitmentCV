@@ -1,5 +1,7 @@
 package study.recruit.entity;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collection;
@@ -14,12 +16,16 @@ public class TblCV {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
+    @Expose
     @Column(name = "name", length = 300)
     private String name;
+    @Expose
     @Column(name = "objective", length = 3000)
     private String objective;
+    @Expose
     @Column(name = "additionalInfo", length = 300)
     private String additionalInfo;
+    @Expose
     @Column(name = "pdfUrl", length = 100)
     private String pdfUrl;
     @ManyToOne
@@ -28,19 +34,26 @@ public class TblCV {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv")
     private Collection<TblApply> applyCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv")
+    @Expose
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv", fetch = FetchType.EAGER)
     private Collection<TblCertificate> certificateCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv")
+    @Expose
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv", fetch = FetchType.EAGER)
     private Collection<TblAward> awardCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv")
+    @Expose
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv", fetch = FetchType.EAGER)
     private Collection<TblExp> expCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv")
+    @Expose
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv", fetch = FetchType.EAGER)
     private Collection<TblProject> projectCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv")
+    @Expose
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv", fetch = FetchType.EAGER)
     private Collection<TblEducation> educationCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv")
+    @Expose
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv", fetch = FetchType.EAGER)
     private Collection<TblParticipation> participationCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv")
+    @Expose
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cv", fetch = FetchType.EAGER)
     private Collection<TblSpecialize> specializeCollection;
 
     public Integer getId() {
@@ -89,5 +102,33 @@ public class TblCV {
 
     public void setCandidate(TblCandidate candidate) {
         this.candidate = candidate;
+    }
+
+    public Collection<TblCertificate> getCertificateCollection() {
+        return certificateCollection;
+    }
+
+    public Collection<TblAward> getAwardCollection() {
+        return awardCollection;
+    }
+
+    public Collection<TblExp> getExpCollection() {
+        return expCollection;
+    }
+
+    public Collection<TblProject> getProjectCollection() {
+        return projectCollection;
+    }
+
+    public Collection<TblEducation> getEducationCollection() {
+        return educationCollection;
+    }
+
+    public Collection<TblParticipation> getParticipationCollection() {
+        return participationCollection;
+    }
+
+    public Collection<TblSpecialize> getSpecializeCollection() {
+        return specializeCollection;
     }
 }

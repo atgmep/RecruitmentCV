@@ -1,5 +1,7 @@
 package study.recruit.entity;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -9,6 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class TblEducation {
 
     private static final long serialVersionUID = 1L;
+    @Expose
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -16,15 +19,18 @@ public class TblEducation {
     @ManyToOne
     @JoinColumn(name = "tbl_curriculum_vitae_id")
     private TblCV cv;
+    @Expose
     @Column(name = "time", length = 45)
     private String time;
     @Column(name = "alphabetic")
     private Integer alphabetic;
-
+    @Expose
     @Column(name = "shool", length = 300)
     private String shool;
+    @Expose
     @Column(name = "major", length = 300)
     private String major;
+    @Expose
     @Column(name = "mark")
     private Double mark;
 

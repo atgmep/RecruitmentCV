@@ -1,5 +1,7 @@
 package study.recruit.entity;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Collection;
@@ -10,15 +12,18 @@ import java.util.Collection;
 public class TblDepartment {
 
     private static final long serialVersionUID = 1L;
+    @Expose
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
+    @Expose
     @Column(name = "name", length = 300)
     private String name;
     @OneToOne
     @JoinColumn(name = "tbl_user_id")
     private TblUser user;
+    @Expose
     @ManyToOne
     @JoinColumn(name = "tbl_company_id")
     private TblCompany company;

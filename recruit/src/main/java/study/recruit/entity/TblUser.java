@@ -24,9 +24,8 @@ public class TblUser  implements UserDetails {
     private String username;
     @Column(name = "password", length = 45)
     private String password;
-    @ManyToOne
-    @JoinColumn(name = "tbl_role_id")
-    private TblRole role;
+    @Column(name = "role", length = 45)
+    private String role;
     @Column(name = "status")
     private Integer status;
 
@@ -74,7 +73,7 @@ public class TblUser  implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority(role.getName()));
+        authorities.add(new SimpleGrantedAuthority(role));
         return authorities;
     }
 
@@ -86,11 +85,11 @@ public class TblUser  implements UserDetails {
         this.password = password;
     }
 
-    public TblRole getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(TblRole role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

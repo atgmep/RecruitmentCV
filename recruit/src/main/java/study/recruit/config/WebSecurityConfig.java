@@ -23,6 +23,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import study.recruit.common.Fix;
+import study.recruit.common.Methods;
+import study.recruit.entity.TblCandidate;
 import study.recruit.service.LoginService;
 
 import javax.servlet.ServletException;
@@ -94,10 +96,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new AuthenticationSuccessHandler() {
             @Override
             public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
-                List<? extends GrantedAuthority> authorities = (List<? extends GrantedAuthority>) authentication.getAuthorities();
-                String role = authorities.get(0).getAuthority();
-                Gson gson = new GsonBuilder().create();
-                response.getWriter().append(gson.toJson(role));
+                Methods methods = new Methods();
+                TblCandidate tblCandidate = methods.getUser().getCandidate();
+                response.getWriter().append(tblCandidate != null ? tblCandidate.getId() + "" : methods.getUser().getDepartment().getId() + "");
             }
         };
     }

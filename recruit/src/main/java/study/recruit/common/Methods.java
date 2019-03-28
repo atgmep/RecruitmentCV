@@ -1,5 +1,6 @@
 package study.recruit.common;
 
+import com.google.gson.Gson;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.apache.tomcat.util.codec.binary.StringUtils;
 import org.springframework.security.core.Authentication;
